@@ -2,33 +2,39 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
-                echo 'Checked out code'
+                checkout scm
+                echo 'Code checked out'
             }
         }
 
-        stage('Build Backend') {
+        stage('Stop Old Containers') {
             steps {
-                dir('backend') {
-                    sh 'mvn clean package -DskipTests'
-                }
+                sh 'docker-compose down || true'
             }
         }
 
-        stage('Build Frontend') {
+        stage('Build Docker Images') {
             steps {
-                dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
-                }
+                sh 'docker-compose build'
             }
         }
 
-        stage('Deploy') {
+        stage('Run Containers') {
             steps {
-                echo 'Deploy stage will be added next'
+                sh 'docker-compose up -d'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed: App is running in Docker containers 🚀'
+        }
+        failure {
+            echo 'Pipeline failed ❌ Check logs'
         }
     }
 }
