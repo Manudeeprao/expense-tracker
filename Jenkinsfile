@@ -2,35 +2,36 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Stop Old Containers') {
+        stage('Checkout') {
             steps {
-                dir('.') {
-                    sh 'docker-compose down || true'
+                echo 'Code checked out from GitHub'
+            }
+        }
+
+        stage('Test Backend') {
+            steps {
+                dir('backend') {
+                    sh 'mvn test'
                 }
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                dir('.') {
-                    sh 'docker-compose build'
-                }
+                sh 'docker-compose build'
             }
         }
 
-        stage('Run Containers') {
+        stage('Deploy with Docker Compose') {
             steps {
-                dir('.') {
-                    sh 'docker-compose up -d'
-                }
+                sh 'docker-compose up -d'
             }
         }
     }
 
     post {
         success {
-            echo 'Docker containers are up and running 🚀'
+            echo 'Pipeline completed successfully ✅'
         }
         failure {
             echo 'Pipeline failed ❌'
