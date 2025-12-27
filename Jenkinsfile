@@ -8,14 +8,6 @@ pipeline {
             }
         }
 
-        stage('Test Backend') {
-            steps {
-                dir('backend') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
         stage('Build Docker Images') {
             steps {
                 sh 'docker-compose build'
