@@ -31,10 +31,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline completed: App is running in Docker containers 🚀'
+            echo 'App deployed using Docker 🚀'
         }
         failure {
-            echo 'Pipeline failed ❌ Check logs'
+            echo 'Pipeline failed ❌'
         }
     }
 }
