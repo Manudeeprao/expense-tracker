@@ -8,21 +8,26 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Backend') {
             steps {
-                echo 'Build stage'
+                dir('backend') {
+                    sh 'mvn clean package -DskipTests'
+                }
             }
         }
 
-        stage('Test') {
+        stage('Build Frontend') {
             steps {
-                echo 'Test stage'
+                dir('frontend') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploy stage'
+                echo 'Deploy stage will be added next'
             }
         }
     }
