@@ -3,7 +3,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext(null);
-const API_URL = 'http://localhost:8080/api/auth';
+const API_URL = 'http://localhost:8081/api/auth';
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
             // fetch user by email to get id for existing sessions where userId wasn't stored
             (async () => {
               try {
-                const resp = await axios.get(`http://localhost:8080/api/users/by-email/${encodeURIComponent(decoded.sub)}`, {
+                const resp = await axios.get(`http://localhost:8081/api/users/by-email/${encodeURIComponent(decoded.sub)}`, {
                   headers: {
                     Authorization: `Bearer ${token}`
                   }
