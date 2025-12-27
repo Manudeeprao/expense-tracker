@@ -1,0 +1,962 @@
+/* Global CSS Variables for Themes */
+:root {
+  /* Vibrant Theme Colors */
+  --primary-color: linear-gradient(90deg,#ff7a18,#af002d 70%);
+  --primary-solid: #ff6b35; /* fallback solid color */
+  --accent-color: #00bfa6;
+  --secondary-color: #f7fbfc;
+  --text-color: #1f2937;
+  --text-color-light: #ffffff;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --border-color: #e6edf0;
+  --success-color: #16a34a;
+  --error-color: #ef4444;
+  --font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --report-bg: #f3fcfb;
+  --muted-color: #6b7280;
+}
+
+body.dark-theme {
+  /* Dark Theme Colors */
+  --primary-color: #5a7d9a;
+  --secondary-color: #2c3e50;
+  --text-color: #f5f5f5;
+  --text-color-light: #fff;
+  --card-bg: #34495e;
+  --input-bg: #4a6279;
+  --border-color: #555;
+  --report-bg: #4a6279;
+  --muted-color: #cbd5e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+  background: var(--primary-solid);
+  background-image: linear-gradient(90deg, #ff6b35, #ff9a3c);
+  color: var(--text-color-light);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand-logo{ width:42px; height:42px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+.brand-text{ font-weight:700; font-size:20px; color:var(--text-color-light); }
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+  align-items: center; /* Ensures vertical alignment */
+}
+.nav-links a, .nav-links button {
+  color: var(--text-color-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.nav-links a i, .nav-links button i { margin-right: 8px; opacity: 0.95; }
+.nav-links a:hover, .nav-links button:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* User avatar in navbar */
+.nav-user .user-wrapper { display:flex; align-items:center; gap:10px; }
+.user-avatar {
+  width:34px; height:34px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg,#ff9a3c,#ff6b35);
+  color: #fff; font-weight:700; font-size:13px; box-shadow:0 6px 18px rgba(8,20,30,0.12);
+}
+.btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding:8px 10px; border-radius:8px; color:var(--text-color-light); }
+.btn-ghost i { margin-right:8px; }
+
+/* Trusted logos row in footer */
+.trusted-logos { display:flex; gap:10px; align-items:center; justify-content:center; margin-left: 18px; }
+.trusted-logos img { width:36px; height:36px; opacity:0.95; filter: drop-shadow(0 6px 12px rgba(8,20,30,0.06)); border-radius:6px; }
+body.dark-theme .trusted-logos img { filter: none; opacity:0.95; }
+
+/* General card polish - slightly stronger glass look */
+.card { border: 1px solid rgba(16,24,40,0.04); }
+body.dark-theme .card { border-color: rgba(255,255,255,0.04); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
+/* Improve headings and spacing globally */
+h1.page-title { font-size:34px; letter-spacing:-0.2px; }
+.page-subtitle { font-size:15px; line-height:1.45; }
+
+/* Make feature icons monochrome-tinted to match accent */
+.feature-icon { border-radius:8px; box-shadow:none; background:transparent; }
+body.dark-theme .feature-icon { filter: brightness(1.05) saturate(0.9); }
+.nav-links a.active {
+  background-color: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 -3px 0 rgba(255,255,255,0.12);
+}
+.nav-links li:last-child {
+  margin-left: 25px;
+}
+
+/* Card and Form Styles */
+.card {
+  background: var(--card-bg);
+  padding: 26px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(16,24,40,0.08);
+  margin-bottom: 24px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover{ transform: translateY(-4px); box-shadow:0 12px 30px rgba(16,24,40,0.1); }
+.card h2, .card h3 {
+  text-align: center;
+  color: var(--accent-color);
+  margin-bottom: 22px;
+  font-weight: 700;
+}
+
+/* Page title used on Home page to ensure high contrast in both themes */
+.page-title {
+  font-size: 28px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+/* Ensure the page title is fully visible in dark theme as well */
+body.dark-theme .page-title {
+  color: var(--text-color-light) !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.45);
+}
+
+/* Stronger rule to prevent blending or inherited opacity from fading the title */
+body.dark-theme .page-title,
+body.dark-theme .page-subtitle {
+  color: var(--text-color-light) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  -webkit-text-stroke: 0.2px rgba(0,0,0,0.12);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.55) !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Extra-specific hero overrides to ensure the header and subtitle are readable in dark mode only */
+body.dark-theme .hero .page-title,
+body.dark-theme .hero .page-subtitle {
+  color: var(--text-color-light) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  -webkit-text-fill-color: var(--text-color-light) !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+  position: relative;
+  z-index: 3;
+}
+
+/* Prevent any ancestor from unintentionally fading the hero area in dark mode */
+body.dark-theme .hero,
+body.dark-theme .hero-left,
+body.dark-theme .hero-right,
+body.dark-theme .container > .hero {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  -webkit-filter: none !important;
+}
+
+/* Make subtitle readable in dark mode */
+body.dark-theme .hero .page-subtitle {
+  color: rgba(255,255,255,0.88) !important;
+}
+
+/* Ensure the hero title has a subtle dark shadow for readability on illustrated backgrounds */
+body.dark-theme .hero .page-title {
+  color: var(--text-color-light) !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+/* Ensure hero text is visible in light mode too (explicitly set dark text color) */
+.hero .page-title,
+.hero .page-subtitle {
+  color: #1f2937 !important; /* strong dark for hero headline */
+  opacity: 1 !important;
+}
+
+/* Footer dark mode visibility overrides */
+body.dark-theme footer,
+body.dark-theme footer a,
+body.dark-theme .footer-right,
+body.dark-theme footer div {
+  color: var(--text-color-light) !important;
+  opacity: 1 !important;
+}
+
+/* Footer / site-footer styles */
+.site-footer {
+  margin-top: 40px;
+  padding: 28px 20px;
+  border-top: 1px solid var(--border-color);
+  background: transparent;
+}
+.site-footer .footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.site-footer .footer-left { display:flex; gap:12px; align-items:center; }
+.footer-logo { width:40px; height:40px; border-radius:8px; }
+.brand-title { font-weight:700; color: var(--text-color); }
+.brand-sub { font-size:13px; color: var(--muted-color); }
+.footer-links a { margin-left:14px; text-decoration:none; color: var(--text-color); }
+.footer-right { text-align:right; }
+.footer-right .copyright { font-size:13px; color: var(--muted-color); }
+.footer-right .copyright-sub { font-size:12px; color: var(--muted-color); }
+
+/* Dark theme footer overrides */
+/* Dark theme footer overrides: give the footer a subtle dark panel and high-contrast text */
+body.dark-theme .site-footer {
+  background: rgba(0,0,0,0.18);
+  border-top-color: rgba(255,255,255,0.04);
+}
+body.dark-theme .site-footer .brand-title { color: rgba(255,255,255,0.98) !important; }
+body.dark-theme .site-footer .brand-sub { color: rgba(255,255,255,0.80) !important; }
+body.dark-theme .site-footer .footer-links a { color: rgba(255,255,255,0.94) !important; }
+body.dark-theme .site-footer .copyright,
+body.dark-theme .site-footer .copyright-sub { color: rgba(255,255,255,0.78) !important; }
+
+/* Ensure footer children are visible and not clipped or transformed */
+body.dark-theme .site-footer, body.dark-theme .site-footer * {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.page-subtitle {
+  color: var(--muted-color);
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+/* Hero section */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+  align-items: center;
+  padding: 28px 0;
+}
+.hero-left {
+  padding-right: 12px;
+}
+.hero-right { display:flex; justify-content:flex-end; align-items:center; }
+
+/* Panel behind hero text to guarantee contrast regardless of illustration */
+.hero-content {
+  display: inline-block;
+  padding: 28px 28px 20px 28px;
+  border-radius: 12px;
+  max-width: 620px;
+  backdrop-filter: blur(6px);
+}
+
+/* Light theme: slightly warm white panel, dark heading */
+.hero-content {
+  background: rgba(255,255,255,0.85);
+  color: var(--text-color);
+}
+
+/* Dark theme: translucent dark panel, light text */
+body.dark-theme .hero-content {
+  background: rgba(0,0,0,0.35);
+  color: var(--text-color-light);
+}
+
+.hero-content .page-title { margin:0 0 8px 0; }
+.hero-content .page-subtitle { margin:0; color: inherit; opacity:0.95; }
+
+/* CTA button style */
+.cta-btn { width: auto; padding: 12px 18px; min-width: 140px; }
+
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+.feature-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(8,20,30,0.06);
+}
+.feature-card .muted { color: var(--muted-color); font-size: 13px; margin-top:8px; }
+
+/* Feature icons and hover polish */
+.feature-icon {
+  font-size: 34px;
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(16,24,40,0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.feature-card strong { font-size: 16px; margin-top: 4px; color: var(--text-color); }
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(16,24,40,0.12);
+  border-color: rgba(16,24,40,0.08);
+}
+
+/* small micro-interaction: lift icon a bit on hover */
+.feature-card:hover .feature-icon { transform: translateY(-6px) scale(1.06); color: var(--primary-solid); }
+
+/* Make feature cards show a clear colored badge/icon */
+.feature-card .feature-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  background: linear-gradient(135deg,#00bfa6,#17c3b2);
+  margin-bottom: 12px;
+  box-shadow: 0 8px 20px rgba(8,20,30,0.06);
+  border: 2px solid rgba(255,255,255,0.06);
+}
+
+/* Circular icon variants */
+.feature-card .feature-icon.fa-wallet { background: linear-gradient(135deg,#ff9a3c,#ff6b35); }
+.feature-card .feature-icon.fa-chart-line { background: linear-gradient(135deg,#00bfa6,#17c3b2); }
+.feature-card .feature-icon.fa-file-pdf { background: linear-gradient(135deg,#7b61ff,#9b6bff); }
+
+/* Subtle label under icon (optional) */
+.feature-card .feature-icon + strong { margin-top: 6px; }
+
+/* Logout button in navbar (ghost) */
+.nav-logout {
+  color: var(--text-color-light);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+.nav-logout:hover { background: rgba(255,255,255,0.06); }
+
+/* Expenses list styling */
+.expenses-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px; /* thinner vertical padding */
+  margin-bottom: 6px;
+  min-height: 44px; /* compact row height */
+  border-radius: 4px;
+  background: transparent; /* remove card background */
+  box-shadow: none; /* remove card shadow */
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+}
+.expenses-list-item .info {
+  flex: 1 1 auto; /* take remaining space */
+  min-width: 0; /* allow truncation */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 6px;
+}
+.expenses-list-item .amount {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-color);
+  min-width: 100px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.expenses-list-item .actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.expenses-list-item .actions .btn { padding: 8px 12px; font-size: 13px; }
+body.dark-theme .expenses-list-item { background: rgba(255,255,255,0.02); }
+
+/* Dropdown for avatar */
+.nav-user { position: relative; }
+.avatar-dropdown {
+  position: absolute;
+  right: 0;
+  top: 44px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  min-width: 180px;
+  padding: 6px 8px;
+  box-shadow: 0 18px 48px rgba(8,20,30,0.16);
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+  z-index: 9999;
+}
+.avatar-dropdown.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.avatar-dropdown .dropdown-item {
+  display: block;
+  padding: 8px 10px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+}
+.avatar-dropdown .dropdown-item:hover { background: rgba(0,0,0,0.04); }
+
+/* form-select helper */
+.form-select { padding:10px 12px; border-radius:8px; border:1px solid var(--border-color); background:var(--input-bg); color:var(--text-color); }
+
+/* Button / CTA polish */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight:600;
+  text-decoration:none;
+  border: none;
+  cursor: pointer;
+}
+.cta-btn {
+  background: linear-gradient(90deg,#ff6b35,#ff9a3c);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255,107,53,0.16);
+}
+.btn.btn-secondary, .btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(31,41,55,0.06);
+  color: var(--text-color);
+}
+
+/* Dark theme adjustments for feature cards and CTAs */
+body.dark-theme .feature-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.04); }
+body.dark-theme .feature-card strong { color: var(--text-color-light); }
+body.dark-theme .feature-card .muted { color: rgba(255,255,255,0.78); }
+body.dark-theme .btn.btn-secondary, body.dark-theme .btn-secondary { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.92); }
+
+/* Decorative gradient behind hero to add polish (light & dark aware) */
+.hero {
+  position: relative;
+  overflow: visible;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -40px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,154,60,0.12), rgba(255,107,53,0.06) 40%, transparent 60%);
+  filter: blur(36px);
+  pointer-events: none;
+  z-index: 0;
+}
+body.dark-theme .hero::before {
+  background: radial-gradient(circle at 30% 30%, rgba(90,125,154,0.08), rgba(90,125,154,0.04) 40%, transparent 60%);
+}
+
+/* Make the illustration card prominent and above the decorative gradient */
+.hero-right { display:flex; justify-content:flex-end; align-items:center; }
+.hero-illustration-card { width:520px; max-width:48vw; border-radius:14px; padding:18px; background: var(--card-bg); box-shadow: 0 26px 60px rgba(8,20,30,0.12); display:flex; align-items:center; justify-content:center; z-index:2; }
+.hero-illustration { width:100%; height:auto; border-radius:10px; transform-origin: center; animation: floatHero 8s ease-in-out infinite; }
+
+/* Testimonial card */
+.testimonial-card { padding: 18px; display:flex; align-items:center; }
+.testimonial-inner { display:flex; gap:14px; align-items:center; }
+.testimonial-avatar { width:56px; height:56px; border-radius:50%; box-shadow:0 6px 18px rgba(8,20,30,0.08); }
+.testimonial-quote { font-size:15px; color: var(--text-color); font-weight:600; }
+.testimonial-author { font-size:13px; color: var(--muted-color); margin-top:6px; }
+body.dark-theme .testimonial-quote { color: var(--text-color-light); }
+body.dark-theme .testimonial-author { color: rgba(255,255,255,0.78); }
+
+/* Slight page padding tweak for visual balance */
+.container { padding: 10px 22px; }
+
+/* CTA hover polish */
+.cta-btn {
+  transition: transform 0.22s cubic-bezier(.2,.9,.2,1), box-shadow 0.22s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 34px rgba(255,107,53,0.14);
+}
+.btn-secondary:hover { background-color: rgba(31,41,55,0.04); }
+
+/* Polished metric-card variant */
+.metric-card {
+  background: linear-gradient(180deg, rgba(234,247,245,0.9), rgba(236,250,248,0.85));
+  border-radius: 12px;
+  padding: 22px 24px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+}
+.metric-card .label { color: var(--muted-color); font-size: 13px; margin-bottom: 10px; }
+.metric-card .value { color: var(--text-color); font-size: 26px; font-weight:800; }
+
+/* Responsive hero -> single column on small screens */
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { order: -1; display:flex; justify-content:center; }
+}
+
+@keyframes floatHero {
+  0% { transform: translateY(0px) rotate(-0.2deg); }
+  50% { transform: translateY(-8px) rotate(0.2deg); }
+  100% { transform: translateY(0px) rotate(-0.2deg); }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-illustration { animation: none !important; }
+}
+
+/* Slight color adjustment for dark theme so the illustration stays readable */
+body.dark-theme .hero-illustration { filter: brightness(0.98) contrast(0.95); }
+
+/* Metric card used in dashboard summary */
+.metric-card {
+  background: var(--report-bg);
+  border-radius: 10px;
+  padding: 18px 20px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: none;
+}
+.metric-card .label {
+  font-size: 14px;
+  color: var(--muted-color);
+  margin-bottom: 8px;
+}
+.metric-card .value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+/* Account page specific styles */
+.account-card {
+  padding: 32px;
+}
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.form-control {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-color);
+}
+
+/* Auth page centered card */
+.auth-page { display:flex; align-items:center; justify-content:center; min-height: calc(100vh - 96px); padding: 24px; }
+.auth-card { max-width:420px; width:100%; padding:28px; border-radius:14px; text-align:left; }
+.auth-card h2 { margin-top:0; margin-bottom:6px; font-size:24px; }
+.auth-card .muted { color:var(--muted-color); margin-bottom:12px; }
+
+/* Inputs and buttons */
+.form-control { padding:12px 14px; font-size:15px; border-radius:10px; }
+.form-control:focus { outline: none; box-shadow: 0 8px 24px rgba(16,24,40,0.06); border-color: rgba(255,107,53,0.22); }
+.alert { padding:10px 12px; border-radius:8px; margin:12px 0; }
+.alert-error { background: rgba(239,68,68,0.08); color: var(--error-color); border: 1px solid rgba(239,68,68,0.12); }
+.alert-success { background: rgba(16,185,129,0.06); color: var(--success-color); border: 1px solid rgba(16,185,129,0.1); }
+
+/* Buttons: nicer baseline */
+.btn { font-size:14px; padding:10px 14px; border-radius:10px; }
+.btn:focus { outline:none; box-shadow: 0 8px 24px rgba(16,24,40,0.06); }
+.btn-secondary { background: transparent; border: 1px solid rgba(31,41,55,0.06); }
+
+/* Tables and list polish */
+.table { width:100%; border-collapse:collapse; }
+.table th, .table td { padding:12px 10px; border-bottom:1px solid var(--border-color); text-align:left; }
+.table tr:nth-child(even) { background: rgba(0,0,0,0.01); }
+body.dark-theme .table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+/* Modal improvements */
+.modal { background: rgba(0,0,0,0.45); position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:2000; }
+.modal .modal-card { background: var(--card-bg); padding:20px; border-radius:12px; max-width:720px; width:100%; box-shadow: 0 20px 60px rgba(16,24,40,0.2); }
+
+/* Small utility classes */
+.muted { color: var(--muted-color); }
+.gap-12 { gap:12px; }
+
+/* Improve readability in dark theme for the account card specifically */
+body.dark-theme .account-card {
+  background: var(--card-bg);
+  color: var(--text-color-light);
+}
+body.dark-theme .form-control {
+  background: var(--input-bg);
+  color: var(--text-color-light);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+body.dark-theme .account-card hr {
+  border-color: rgba(255,255,255,0.06);
+}
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(59, 89, 152, 0.2);
+}
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg,#ff6b35,#ff9a3c);
+  color: var(--text-color-light);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255,107,53,0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow:0 10px 24px rgba(255,107,53,0.16); }
+.btn-secondary {
+  background: linear-gradient(90deg,#00bfa6,#28c4a6);
+  color: #fff;
+}
+.btn-secondary:hover{ filter:brightness(0.95); }
+
+/* List and Table Styles */
+.list-container, .table-container {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.list-container ul, .table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.list-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+.list-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.list-container li span {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Ensure consistent compact layout (replaces earlier grid rules) */
+.expenses-list-item { transition: background-color 0.18s ease, box-shadow 0.18s ease; }
+.expenses-list-item .info span { font-weight: 600; color: var(--text-color); }
+.expenses-list-item .info small { color: var(--muted-color); font-size: 0.92em; margin-top: 4px; }
+body.dark-theme .expenses-list-item .info small { color: rgba(255,255,255,0.8); }
+.expense-badge {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg,#ff9a3c,#ff6b35);
+  box-shadow: none;
+  font-size: 12px;
+}
+
+.left { display:flex; gap:10px; align-items:center; flex:1 1 auto; min-width:0; }
+.expenses-list-item .title-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.expenses-list-item .title { font-size:14px; color:var(--text-color); }
+.expenses-list-item .date { font-size:12px; color:var(--muted-color); }
+.expenses-list-item .tags { font-size:12px; color:var(--muted-color); }
+
+/* Make action buttons compact icon circles */
+.btn.icon-btn { width:34px; height:34px; padding:0; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:13px; }
+.btn.icon-btn i { margin:0; }
+.btn.icon-btn.btn-secondary { background: transparent; border: 1px solid rgba(31,41,55,0.06); }
+.expenses-list-item .amount-left { margin-top:2px; font-weight:700; color:var(--text-color); }
+
+/* Ensure actions stay right aligned */
+.expenses-list-item .actions { margin-left: auto; display:flex; gap:8px; align-items:center; }
+.btn.icon-btn { width: auto; height: 34px; padding: 6px 10px; border-radius:8px; }
+.btn.icon-btn .btn-label { margin-left:8px; font-size:13px; color: inherit; }
+.btn.icon-btn { background: linear-gradient(90deg,#ff6b35,#ff9a3c); color: #fff; box-shadow: 0 8px 20px rgba(255,107,53,0.12); }
+.btn.icon-btn.btn-secondary { background: transparent; color: var(--text-color); border: 1px solid var(--border-color); box-shadow: none; }
+
+/* On very small screens stack actions and info */
+@media (max-width: 520px) {
+  .expenses-list-item { flex-direction: column; align-items: flex-start; padding:8px; }
+  .expenses-list-item .actions { margin-left: 0; margin-top:6px; }
+}
+
+/* Buttons inside list actions should be compact, not full-width */
+.expenses-list-item .actions .btn,
+.list-container li .btn {
+  width: auto;
+  padding: 8px 12px;
+  min-width: 64px;
+}
+
+.expenses-list-item .amount {
+  font-weight: 700;
+  color: var(--text-color);
+  width: 120px; /* fixed width so all amounts align vertically */
+  text-align: right;
+  display: flex;
+  align-items: center; /* center vertically */
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+/* Dark theme button overrides - only affect dark theme colors */
+body.dark-theme .btn {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+}
+body.dark-theme .btn-secondary {
+  background-color: #566777;
+  color: var(--text-color-light);
+}
+body.dark-theme .btn-secondary:hover {
+  background-color: #465567;
+}
+
+/* Dark theme tuning for the list cards and category items */
+body.dark-theme .card,
+body.dark-theme .list-container,
+body.dark-theme .table-container {
+  background: var(--card-bg);
+  color: var(--text-color-light);
+}
+body.dark-theme .list-container li,
+body.dark-theme .expenses-list-item {
+  background: #3b5568; /* slightly darker card */
+  border-color: rgba(255,255,255,0.06);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.summary-box {
+  background: var(--report-bg);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+.summary-box h3 {
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+}
+.summary-box p {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+}
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Theme toggle switch */
+.theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.theme-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+.theme-toggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+.theme-toggle input:checked + .slider {
+  background-color: #2b6cb0;
+}
+.theme-toggle input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Ensure the amount column is strictly right-justified to line up all amounts */
+.expenses-list-item .amount {
+  justify-self: end;
+  line-height: 1.0;
+}
+
+/* Center row contents vertically and make amount a flex container for exact centering */
+.expenses-list-item {
+  align-items: center;
+}
+.expenses-list-item .amount {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.expenses-list-item .amount .amount-value {
+  display: inline-block;
+  min-width: 80px; /* fixed column width to help alignment */
+  text-align: right;
+}
+
+/* Make sure action buttons never expand to full width in list rows */
+.expenses-list-item .actions .btn {
+  width: auto !important;
+}
+
+/* Responsive: stack expense row elements on small screens */
+@media (max-width: 700px) {
+  .expenses-list-item {
+    grid-template-columns: 1fr; /* stack on small screens */
+    gap: 8px;
+  }
+  .expenses-list-item .amount,
+  .expenses-list-item .actions {
+    justify-self: start;
+  }
+  .expenses-list-item .actions {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Dark mode: make primary and secondary buttons readable */
+body.dark-theme .btn {
+  background-color: #2b6cb0; /* clearer blue */
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.08);
+}
+body.dark-theme .btn:hover {
+  background-color: #234e8a;
+}
+body.dark-theme .btn-secondary {
+  background-color: #4a5568; /* muted gray */
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.06);
+}

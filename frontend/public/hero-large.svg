@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#ff9a3c" />
+      <stop offset="1" stop-color="#ff6b35" />
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#00bfa6" />
+      <stop offset="1" stop-color="#5a7d9a" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" rx="18" fill="url(#g2)" fill-opacity="0.04" />
+  <g transform="translate(60,40)">
+    <rect x="0" y="0" width="420" height="280" rx="16" fill="#fff" fill-opacity="0.9" />
+    <g transform="translate(28,26)" fill="#0f172a">
+      <rect x="0" y="0" width="200" height="20" rx="8" fill="url(#g1)" />
+      <rect x="0" y="36" width="360" height="12" rx="6" fill="#e6f8f5" />
+      <rect x="0" y="64" width="260" height="12" rx="6" fill="#e6f8f5" />
+      <g transform="translate(0,96)">
+        <rect x="0" y="0" width="120" height="12" rx="6" fill="#e6f8f5" />
+        <rect x="140" y="0" width="200" height="12" rx="6" fill="#e6f8f5" />
+      </g>
+    </g>
+    <g transform="translate(480,18)">
+      <rect x="0" y="0" width="320" height="240" rx="16" fill="#fff" fill-opacity="0.95" />
+      <path d="M40 160 L120 80 L200 160 L280 40" stroke="#ff6b35" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <circle cx="40" cy="160" r="8" fill="#ff6b35" />
+      <circle cx="120" cy="80" r="8" fill="#ff6b35" />
+      <circle cx="200" cy="160" r="8" fill="#ff6b35" />
+      <circle cx="280" cy="40" r="8" fill="#ff6b35" />
+    </g>
+    <g transform="translate(420,340)" opacity="0.9">
+      <rect x="0" y="0" width="360" height="120" rx="12" fill="#fff" fill-opacity="0.92" />
+      <g transform="translate(20,16)" fill="#0f172a">
+        <rect x="0" y="0" width="120" height="16" rx="6" fill="#eafcf9" />
+        <rect x="140" y="0" width="200" height="16" rx="6" fill="#eafcf9" />
+        <rect x="0" y="36" width="88" height="12" rx="6" fill="#eafcf9" />
+        <rect x="108" y="36" width="88" height="12" rx="6" fill="#eafcf9" />
+        <rect x="216" y="36" width="88" height="12" rx="6" fill="#eafcf9" />
+      </g>
+    </g>
+  </g>
+</svg>

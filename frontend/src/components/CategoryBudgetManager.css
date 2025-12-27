@@ -1,0 +1,62 @@
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.budget-table th, .budget-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+.budget-table th {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+}
+
+.budget-table tr:nth-child(even) {
+    background-color: var(--secondary-color);
+}
+
+/* Scoped layout for Category Budget Manager to avoid overriding app-wide classes */
+.category-budget-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto; /* center on page */
+    padding: 18px;
+}
+.category-budget-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 18px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.category-budget-card .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+.category-budget-card select,
+.category-budget-card input[type="number"],
+.category-budget-card input[type="date"],
+.category-budget-card input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+.category-budget-actions {
+    margin-top: 12px;
+}
+.budget-table td, .budget-table th {
+    vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+    .category-budget-container { grid-template-columns: 1fr; padding: 12px; }
+}
